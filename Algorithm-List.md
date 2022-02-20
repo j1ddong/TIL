@@ -163,8 +163,108 @@ def counting sort(numbers, k):
 
 ### 3. 선택 정렬(Selection Sort)
 
+- 주어진 자료들 중 가장 작은 값의 원소부터 차례대로 선택하여 위치를 교환하는 방식
+- 시간 복잡도: O(n ** 2)
+
+```python
+def selection_sort(arr):
+    for i in range(len(arr) - 1):
+        min_val = i
+        for j in range(i + 1, len(arr)):
+            if a[min_val] > a[j]:
+                min_val = j
+        arr[i], arr[min_val] = arr[min_val], arr[i]
+```
+
+### 3-1. 셀렉션 알고리즘(Selection Algorithm)
+
+- 저장되어 있는 자료로부터 k번째 큰 혹은 작은 원소를 찾는 방법
+
+```python
+def select(arr, k):
+    for i in range(k):
+        min_val = i
+        for j in range(i + 1, len(arr)):
+            if arr[min_val] > arr[j]:
+                min_val = j
+        arr[i], arr[min_val] = arr[min_val], arr[i]
+    return arr[k - 1]
+```
+
+
+
 ### 4. 퀵 정렬(Quick Sort)
 
 ### 5. 삽입 정렬(Insertion Sort)
 
 ### 6. 병합 정렬(Merge Sort)
+
+
+
+## 4. 부분집합 생성하기
+
+- 집합의 원소가 n개 일 때 공집합을 포함한 부분집합의 수는 `2 ** n` 개
+
+- 비트 연산자
+  - `&` 비트 단위로 AND 연산을 한다.
+  - `|` 비트 단위로 OR 연산을 한다.
+  - `<<` 피연산자의 비트 열을 왼쪽으로 이동시킨다.
+  - `>>` 피연산자의 비트 열을 오른쪽으로 이동시킨다.
+- `1 << n` : 원소가 n개일 경우의 모든 부분집합의 수를 의미, `2 ** 0 = 1` 을 `n`번째로 옮김
+  - `i & (1 << j)` : i의 j번째 비트가 1인지 아닌지 검사, j번 비트에만 1을 옮겨놓고 i번째에도 1이 있으면 1반환, i번째에 0이 없으면 0 반환
+
+```python
+n = len(arr)  # arr은 원소 리스트, n은 원소의 개수
+
+for i in range(1 << n):  # 2 ** n
+    for j in range(n):
+        if i & (1 << j):
+            print(arr[j], end=' ')
+```
+
+
+
+## 5. 검색(Search)
+
+- 저장되어 있는 자료 중에서 원하는 항목을 찾는 작업
+
+### 1. 순차 검색(sequential search)
+
+- 일렬로 되어 있는 자료를 순서대로 검색하는 방법
+- 시간 복잡도: O(n)
+
+### 2. 이진 검색(binary search)
+
+- 자료의기운데에 있는 항목의 키 값과 비교하여 다음 검색의 위치를 결정하고 검색을 계속 진행하는 방법
+- **이진 검색을 하기 위해서는 자료가 정렬된 상태여야 한다.** 
+
+```python
+def binary_search(a, key):  # a는 리스트 key는 찾는 값
+    start = 0
+    end = len(a) - 1
+    while start <= end:
+        middle = (start + end) // 2
+        if a[middle] == key:
+            return middle
+        elif a[middle] > key:  # 찾는 값이 중간값보다 작으면 end 인덱스 이동
+            end = middle - 1
+        else:  # 찾는 값이 중간값보다 크면 start 인덱스 이동
+            start = middle + 1
+    return -1  # while문 끝날 때까지 안나오면 없는 것
+            
+```
+
+```python
+def binary_search_recur(a, start, end, key):
+    if start > end:
+        return -1
+    else:
+        middle = (start + end) // 2
+        if a[middle] == key:
+            return middle
+        elif a[middle] > key:
+            return binary_search_recur(a, start, middle - 1, key)
+        else:
+            return binary_search_recur(a, middle + 1, end, key)
+```
+
