@@ -48,7 +48,7 @@ print(value)
 ### 1. While 반복문
 
 - While문은 조건식이 참인 경우 반복적으로 코드를 실행한다.
-- 반드시 종료조선을 설정해야한다.
+- 반드시 종료조건을 설정해야한다.
 
 ```python
 while <조건식>:
@@ -85,7 +85,7 @@ for val in dict.values():
     
 #3
 for key, value in dict.items():
-    print(key, val)
+    print(key, value)
 ```
 
 #### 1. List Comprehension

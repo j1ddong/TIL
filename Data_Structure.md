@@ -37,7 +37,7 @@
 ### 1. `list.append(x)` vs `list.extend(iterable)`
 
 -  `list.append(x)`리스트 끝에 항목을 더한다. `a[len(a):] = [x]`
-  - `a.insert(len(a), x)` 와 같음 (`insert()`에서 리스트 길이를 넘어서는 인덱스는 마지막에 추가된다.)
+  - `a.insert(len(a), x)` 와 같음 `insert()`에서 리스트 길이를 넘어서는 인덱스는 마지막에 추가된다.)
 -  `list.extend(iterable)`리스트 끝에 이터러블의 모든 항목을 덧붙여서 확장한다. `a[len(a):] = iterable`
 
 ### 2. `list.remove(x)` vs `list.pop([i])`
