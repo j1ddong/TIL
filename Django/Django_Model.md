@@ -98,3 +98,90 @@ class Article(models.Model):
 ## 3. CRUD
 
 > 기본적인 데이터 처리 기능인 Create(생성), Read(읽기), Update(갱신), Delete(삭제)를 묶어서 일컫는 말
+
+`article/views.py`에서 `from .models import Article` 해야 사용 가능
+
+### CREATE
+
+```python
+# 1 인스턴스 생성 후 속성값 지정
+article = Article()  # 인스턴스 생성
+article.title = 'first'
+article.content = 'django!'
+article.save()
+
+# 2 인스턴스 생성 시 속성값 지정 ; 이 방식이 선호됨
+article = Article(title='second', content='django!!')
+article.save()
+
+# 3 QuerySet API create()사용
+Article.objects.create(title='thrid', content='django!')
+```
+
+- `save() method` : 객체를 데이터베이스에 저장
+- `def __str__(self)`: 각각의 `object`가 사람이 읽을 수 있는 문자열을 반환할 수 있도록 함
+
+
+
+### READ
+
+```python
+# 모든 DB 조회하기
+Article.objects.all()
+
+# 뒤에서부터 조회하기
+Article.objects.order_by('-pk')
+
+# pk 값으로 조회: 존재하지 않는 값이나 중복되는 값 조회시 오류
+Article.objects.get(pk=상수)
+
+# filter로 중복되는 값 조회 가능
+Article.objects.filter(name='홍길동')  # 홍길동이 두명 있어도 오류 안남
+```
+
+- `all()` : 현재 `QuerySet`의 복사본을 반환
+- `get()` : 객체를 찾을 수 없으면 `DoesNotExist` 예외 발생, 둘 이상의 객체를 찾으면 `MultipleObjectsReturned`예외 발생하기 때문에 고유성이 보장되는 `pk` 값을 통해 조회
+- `filter()`: 주어진 lookup 매개변수와 일치하는 객체를 포함하는 새 QuerySet 반환
+
+
+
+### UPDATE
+
+```python
+# 조회 > 수정 > 저장
+article = Article.objects.get(pk=1)
+article.title = 'byebye'
+article.save()
+```
+
+
+
+### DELETE
+
+```python
+# 조회 > 삭제
+article = Article.objects.get(pk=1)
+article.delete()
+```
+
+
+
+## Admin Site
+
+> 사용자가 아닌 서버의 관리자가 활용하기 위한 페이지
+
+1. `python manage.py createsuperuser` : 관리자 계정 생성 후 서버를 실행한 다음 `/admin` 에서 관리자 페이지 로그인
+2. `admin` 등록
+
+```python
+# articles/admin.py
+from django.contrib import admin
+from .models import Article
+
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'title', 'content',)
+
+# admin 사이트에 register 하겠다.
+admin.site.register(Article)
+```
+
