@@ -15,7 +15,7 @@
 2. 쿼리(Query): 데이터를 조회, 추출, 조작하기 위한 명령어
 3. 스키마(Schema): 데이터베이스에서 자료의 구조, 표현방법, 관계 등을 정의한 구조
 
-![image-20220312143732078](C:\Users\jiunHan\Desktop\TIL\Django\image-20220312143732078.png)
+![image-20220312143732078](C:\Users\jiunHan\Desktop\TIL\Django\md-images\image-20220312143732078.png)
 
 4. 테이블(Table): 열과 행의 모델을 사용해 조직된 데이터 요소들의 집합
    1. 열(column): 필드(field) 또는 속성 ; 각 열에는 고유한 데이터 형식이 지정된다.
