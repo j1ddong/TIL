@@ -9,6 +9,7 @@
 1. 모든 URL을 프로젝트 `urls.py`에 작성
 
 ```python
+# firstpjt/urls.py
 from articles import views
 
 urlpatterns = [
@@ -160,6 +161,7 @@ def index(request):
 - 서버로부터 정보를 조회하는데 사용한다. 데이터를 가져올 때만 사용해야 한다.
 
 ```django
+{# articles/templates/throw #}
 {% block content %}
 <h1>THROW</h1>
 <form action="{% url 'catch' %}" method="GET">
@@ -172,6 +174,7 @@ def index(request):
 ```
 
 ```python
+# articles/views
 def catch(request):
     message = request.GET.get('message')
     context = {
@@ -181,6 +184,7 @@ def catch(request):
 ```
 
 ```django
+{# articles/templates/catch #}
 {% block content %}
 <h1>CATCH</h1>
 <h2>여기서 {{ message }}를 받았다!!</h2>

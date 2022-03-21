@@ -8,7 +8,7 @@
 
 ## 1. Static files 구성
 
-1. django.contrib.staticfiles 앱이 `INSTALLED_APPS`에 있는지 확인
+1. `django.contrib.staticfiles`앱이 `INSTALLED_APPS`에 있는지 확인
 2. setting.py에 `STATIC_URL` 정의 // (여기까지는 원래 되어있음)
 3. 템플릿에서 static 템플릿 태그를 사용하여 static file이 있는 상대경로를 빌드
 4. 앱에 static file 저장하기 (`my_app/static/my_app/sample.jpg`)
@@ -44,7 +44,8 @@ STATIC_URL = '/static/'
 
 - STATIC_ROOT에 있는 정적 파일을 참조 할 때 사용할 URL 
 - 개발 단계에서는 실제 정적 파일들이 저장되어 있는 app/static/ 경로 (기본 경로) 및STATICFILES_DIRS에 정의된 추가 경로들을 탐색함 
-- 실제 파일이나 디렉토리가 아니며, URL로만 존재 비어 있지 않은 값으로 설정 한다면 반드시 slash(/)로 끝나야 함
+- 실제 파일이나 디렉토리가 아니며, URL로만 존재
+-  비어 있지 않은 값으로 설정 한다면 반드시 slash(/)로 끝나야 함
 
 <br>
 
