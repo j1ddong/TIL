@@ -48,7 +48,7 @@
 
 #### 2-2. 완전 이진 트리(Complete Binary Tree)
 
-> 높이가 `h`이고 노드 수가 `n`일 때 `(2 ** h < n  < 2 ** (h + 1) - 1)`, 포화 이전 트리의 노드 번호 1번부터 n번까지 빈 자리가 없는 이진 트리
+> 높이가 `h`이고 노드 수가 `n`일 때 `(2 ** h <= n <= 2 ** (h + 1) - 1)`, 포화 이전 트리의 노드 번호 1번부터 n번까지 빈 자리가 없는 이진 트리
 
 <img src="C:\Users\jiunHan\Desktop\TIL\Algorithm\Algo-imag\image-20220316225212417.png" alt="image-20220316225212417" style="zoom:80%;" />
 
@@ -63,6 +63,10 @@
 > 루트 노드를 제외한 모든 노드가 자식노드를 2개 또는 0개 가지는 트리, 즉 차수가 0이거나 2인 트리
 
 <img src="C:\Users\jiunHan\Desktop\TIL\Algorithm\Algo-imag\image-20220319133944048.png" alt="image-20220319133944048" style="zoom:80%;" />
+
+#### 2-5 이진 탐색 트리
+
+- 밑에서 자세하게 다룸
 
 ### 3. 순회
 
@@ -167,3 +171,124 @@ root = c  # 부모가 없는 게 루트 노드 번호
 
 
 ### 5. 이진 탐색 트리 (Binary Search Tree)
+
+> 왼쪽에 있는 노드는 반드시 부모 노드보다 값이 작아야하며, 오른쪽에 있는 노드는 반드시 부모 노드보다 값이 커야 한다.
+
+- 왼쪽 서브트리와 오른쪽 서브트리도 이진 탐색 트리다.
+- 중위 순회하면 오름차순으로 정렬된 값을 얻을 수 있다.
+- 보통 `O(log(N))` 시간이 걸리지만 한쪽으로 쏠린 `unbalanced`한 트리인 경우 `O(N)` 걸리게 된다. 
+
+```python
+# 중위순회해서 나오는 노드번호랑 부여되는 번호 같다
+def in_order(s):
+    global num
+    if s <= N:  # 있는 노드만 찾기 위함
+        in_order(s * 2)
+        nodes[s] = num
+        num += 1
+        in_order(s * 2 + 1)
+
+
+for tc in range(1, T + 1):
+    N = int(input())  # 1~N까지 노드에 저장할 숫자
+    nodes = [0] * (N + 1)
+    num = 1
+    in_order(1)
+    print(f'#{tc} {nodes[1]} {nodes[N//2]}')
+```
+
+
+
+## Heaps
+
+> `완전 이진 트리`에 있는 노드 중에서 키값이 가장 큰 노드나 키값이 가장 작은 노드를 찾기 위해서 만든 자료구조
+
+- 루트 노드는 항상 최대 또는 최소 값이 된다.
+- 힙이 굳이 `BST`일 필요는 없다.
+
+### 1. 종류
+
+#### Max Heaps(최대 힙)
+
+- 부모가 항상 자식보다 값이 커야하는 트리
+- 키값이 가장 큰 노드를 찾기 위한 `완전 이진 트리` = 루트노드 : 키값이 가장 큰 노드
+
+#### Min Heaps(최소 힙)
+
+- 부모가 항상 자식보다 값이 작아야하는 트리
+- 키값이 가장 작은 노드를 찾기 위한 `완전 이진 트리` = 루트 노드 : 키값이 가장 작은 노드
+
+### 2. Heapify
+
+> 히피파이는 힙에서 전체 트리를 `재정렬`하는 과정을 뜻한다.
+>
+> 요소를 추가하거나 꺼낼 때 사용
+
+#### 2-1 Insert(삽입)
+
+- 빈 자리를 찾아서 일단 새로운 요소 집어넣기
+- 재정렬(heapify) 진행
+
+#### 2-2 Delete(꺼내기)
+
+- 루트 노드의 값을 제거한다. (힙에서 값을 빼낼 때는 보통 루트 노드의 값을 빼낸다고 가정)
+- 가장 하단 오른쪽에 있는 리프를 루트 노드로 가져온다
+- 새로운 루트 노드가 힙의 조건을 만족하는지 체크하기 위해 재정렬(heapify) 진행
+
+```python
+# Min Heaps
+N = int(input())  # 노드 수
+numbers = list(map(int, input().split()))  # 서로 다른 N개의 자연수
+nodes = [0] * (N + 1)
+n = 1
+for i in numbers:
+    nodes[n] = i  # 마지막 노드에 순서 일단 넣기
+    k = n
+    while k // 2 >= 1:  # 부모 노드와 자식 노드 크기 비교하기
+        if nodes[k] < nodes[k // 2]:
+            nodes[k], nodes[k // 2] = nodes[k // 2], nodes[k]
+        k = k // 2
+    n += 1
+```
+
+### 3. Heap Implementation
+
+- 배열을 이용해서 힙 구현
+
+```python
+# Min Heaps
+N = 6  # 노드 수
+data = [3, 6, 2, 1, 7, 9]
+
+tree = [0 for _ in range(N + 1)]  # 배열 생성
+last = 1
+
+for i in range(len(data)):
+    if not tree[i]:  # 마지막 노드가 차있으면
+        tree[last] = data[i]
+    else:
+        last += 1
+        child = last  # 새로 추가된 정점을 자식으로
+        parent = child // 2  # 완전 이진트리에서의 부모 정점 번호
+
+        tree[child] = data[i]
+        """
+        # 삽입 및 정렬 순서
+        # tree / child_idx / parent_idx
+        [0, 3, 6, 0, 0, 0, 0] 2 1
+        [0, 3, 6, 2, 0, 0, 0] 3 1
+        [0, 2, 6, 3, 1, 0, 0] 4 2
+        [0, 1, 2, 3, 6, 7, 0] 5 2
+        [0, 1, 2, 3, 6, 7, 9] 6 3
+        """
+        # 부모가 있고, 부모가 자식보다 큰 동안(부모가 작아질 때 까지)
+        while parent >= 1 and tree[parent] > tree[child]:
+            # 부모와 자식 위치 변경
+            tree[parent], tree[child] = tree[child], tree[parent]
+            # 자식 위치를 부모로 변경
+            child = parent
+            # 부모는 부모 // 2 => 조상 노드
+            parent = parent // 2
+print(tree)
+```
+
