@@ -229,12 +229,6 @@ for tc in range(1, T + 1):
 - 빈 자리를 찾아서 일단 새로운 요소 집어넣기
 - 재정렬(heapify) 진행
 
-#### 2-2 Delete(꺼내기)
-
-- 루트 노드의 값을 제거한다. (힙에서 값을 빼낼 때는 보통 루트 노드의 값을 빼낸다고 가정)
-- 가장 하단 오른쪽에 있는 리프를 루트 노드로 가져온다
-- 새로운 루트 노드가 힙의 조건을 만족하는지 체크하기 위해 재정렬(heapify) 진행
-
 ```python
 # Min Heaps
 N = int(input())  # 노드 수
@@ -249,6 +243,34 @@ for i in numbers:
             nodes[k], nodes[k // 2] = nodes[k // 2], nodes[k]
         k = k // 2
     n += 1
+    
+```
+
+#### 2-2 Delete(꺼내기)
+
+- 루트 노드의 값을 제거한다. (힙에서 값을 빼낼 때는 보통 루트 노드의 값을 빼낸다고 가정)
+- 가장 하단 오른쪽에 있는 리프를 루트 노드로 가져온다
+- 새로운 루트 노드가 힙의 조건을 만족하는지 체크하기 위해 재정렬(heapify) 진행
+
+```python
+# Max heaps
+def deq():
+    global last
+		temp = tree[1]
+		tree[1] = tree[last]  # 마지막 정점의 키를 루트에 복사
+		last = -1  # 마지막 정점 삭제
+		p = 1
+		c = p * 2
+		while c <= last:  # 왼쪽 자식이 있을 때까지
+				if c + 1 <= last and tree[c] < tree[c + 1]:  # 오른쪽 자식도 확인
+						c += 1  # 오른쪽 자식이 왼쪽 자식보다 크면 오른쪽 자식 선택
+				if tree[p] < tree[c]:
+						tree[p], tree[c] = tree[c], tree[p]
+						p = c
+						c = p * 2
+				else:
+						break
+		return temp
 ```
 
 ### 3. Heap Implementation

@@ -146,10 +146,10 @@ def bubble sort(numbers):
 
 ```python
 def counting sort(numbers, k):
-    counting_arr = [0] * (k + 1)  #카운트 공간을 할당하기 위해 제일 큰 정수 k라고 하자
+    counting_arr = [0] * (k + 1)  # 카운트 공간을 할당하기 위해 제일 큰 정수 k라고 하자
     result = [-1] * len(numbers)
     for num in numbers:
-        counting_arr[num] += 1  #num을 카운트 배열의 인덱스 위치에 하니씩 더한다
+        counting_arr[num] += 1  # num을 카운트 배열의 인덱스 위치에 하니씩 더한다
     for i in range(K):
         # 누적합 구하기
         counting_art[i + 1] = counting_arr[i] + counting_arr[i + 1]
