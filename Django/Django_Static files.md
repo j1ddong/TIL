@@ -71,9 +71,7 @@ STATIC_URL = '/static/'
 > $ python manage.py collectstatic
 > ```
 
-<b
 
-<br>
 
 ### static file 사용하기
 

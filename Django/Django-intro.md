@@ -28,7 +28,7 @@
 1. Django 설치 전 가상환경 생성 및 활성화
 
    1. `python -m venv venv`
-   2.  `source venv\Scripts\activate` 
+   2.  `source venv/Scripts/activate` 
 2. Django 설치
 
    1. `pip install django==3.2.12`
