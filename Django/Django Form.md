@@ -64,6 +64,21 @@ There are other output options though for the `<label>`/`<input>` pairs:
 
 >  Note that you’ll have to provide the surrounding `<table>` or `<ul>` elements yourself.
 
-#### 2-2 Widgets
+
+
+#### 2-2 Django HTML input 요소 표현하는 2가지
+
+##### 2-2-1 Form fields
+
+- [Built-in Field classes](https://docs.djangoproject.com/en/4.0/ref/forms/fields/#built-in-field-classes)
+- For each field, we describe the default widget used if you don’t specify `widget`. We also specify the value returned when you provide an empty value (see the section on `required` above to understand what that means).
+
+##### 2-2-2 Widgets
 
 > A widget is Django’s representation of an HTML input element. The widget handles the rendering of the HTML, and the extraction of data from a GET/POST dictionary that corresponds to the widget.
+
+- 주의사항
+  - Widgets should not be confused with the form fields. Form fields **deal with the logic of input validation** and are used directly in templates. Widgets deal with rendering of HTML form input elements on the web page and extraction of raw submitted data. However, **widgets do need to be assigned to form fields.**
+
+-  [Built-in widgets](https://docs.djangoproject.com/en/4.0/ref/forms/widgets/#built-in-widgets-1)
+
