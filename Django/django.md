@@ -114,18 +114,6 @@ urlpatterns = [
 
 
 
-```python
-
-```
-
-
-
-
-
-
-
-
-
 
 
 ```python

@@ -1,0 +1,2 @@
+- REST API에서 `requst.post` 대신 `request.data`쓰는 이유 
+- [request.data](https://www.django-rest-framework.org/tutorial/2-requests-and-responses/#request-objects)
