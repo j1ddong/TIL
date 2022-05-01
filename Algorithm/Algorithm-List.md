@@ -268,3 +268,6 @@ def binary_search_recur(a, start, end, key):
             return binary_search_recur(a, middle + 1, end, key)
 ```
 
+
+
+## 5. Linked List
