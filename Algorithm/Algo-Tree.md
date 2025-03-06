@@ -25,7 +25,7 @@
   - `B`의 자손 노드들: `E, F, K` 
 - 서브 트리(subtree): 부모 노드와 연결된 간선을 끊었을 때 생성되는 트리
 
-![image-20220316222158816](C:\Users\jiunHan\Desktop\TIL\Algorithm\Algo-imag\image-20220316222158816.png)
+![image-20220316222158816](C:\Users\jiunHan\Desktop\Git hub\TIL\Algorithm\Algo-imag\image-20220316222158816.png)
 
 ## 이진트리
 
@@ -44,25 +44,25 @@
 
 > 높이가 `h`일 때 최대 노드 개수인 `2 ** (h + 1) - 1`  노드를 가진 이진 트리
 
-<img src="C:\Users\jiunHan\Desktop\TIL\Algorithm\Algo-imag\image-20220316224346926.png" alt="image-20220316224346926" style="zoom:80%;" />
+![image-20220316224346926](C:\Users\jiunHan\Desktop\Git hub\TIL\Algorithm\Algo-imag\image-20220316224346926.png)
 
 #### 2-2. 완전 이진 트리(Complete Binary Tree)
 
 > 높이가 `h`이고 노드 수가 `n`일 때 `(2 ** h <= n <= 2 ** (h + 1) - 1)`, 포화 이전 트리의 노드 번호 1번부터 n번까지 빈 자리가 없는 이진 트리
 
-<img src="C:\Users\jiunHan\Desktop\TIL\Algorithm\Algo-imag\image-20220316225212417.png" alt="image-20220316225212417" style="zoom:80%;" />
+![image-20220316225212417](C:\Users\jiunHan\Desktop\Git hub\TIL\Algorithm\Algo-imag\image-20220316225212417.png)
 
 #### 2-3 편향 이진 트리(Skewed Binary Tree)
 
 > 높이가 h에 대해 `h + 1` 인 최소 개수의 노드를 가지면서 한쪽 방향의 자식 노드만을 가진 이진 트리
 
-<img src="C:\Users\jiunHan\Desktop\TIL\Algorithm\Algo-imag\image-20220316225347969.png" alt="image-20220316225347969" style="zoom:80%;" />
+![image-20220316225347969](C:\Users\jiunHan\Desktop\Git hub\TIL\Algorithm\Algo-imag\image-20220316225347969.png)
 
 #### 2-4 정 이진 트리
 
 > 루트 노드를 제외한 모든 노드가 자식노드를 2개 또는 0개 가지는 트리, 즉 차수가 0이거나 2인 트리
 
-<img src="C:\Users\jiunHan\Desktop\TIL\Algorithm\Algo-imag\image-20220319133944048.png" alt="image-20220319133944048" style="zoom:80%;" />
+![image-20220319133944048](C:\Users\jiunHan\Desktop\Git hub\TIL\Algorithm\Algo-imag\image-20220319133944048.png)
 
 #### 2-5 이진 탐색 트리
 

@@ -46,12 +46,10 @@ def permutations(lst, s, r):
         return
     for i in range(len(lst)):
         result[s] = lst[i]
-        used[i] = 1
         permutations(lst, s + 1, r)
-        used[i] = 0
+
 
 arr = ['A', 'B', 'C', 'D']
-used = [0] * len(arr)  # 비복원을 하기 위함
 result = [None] * 2  # 추출한 결과가 들어갈 리스트
 permutations(arr, 0, 2)
 
@@ -117,12 +115,10 @@ def combinations(lst, s, r, idx):
         return
     for i in range(idx, len(lst)):  # idx 안해주면 ['A', 'B'] 생긴 다음 ['B', 'A'] 생김
         result[s] = lst[i]
-        used[i] = 1
         combinations(lst, s + 1, r, i)
-        used[i] = 0
+
 
 arr = ['A', 'B', 'C', 'D']
-used = [0] * len(arr)  # 비복원을 하기 위함
 result = [None] * 2  # 추출한 결과가 들어갈 리스트
 combinations(arr, 0, 2, 0)
 
